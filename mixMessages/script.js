@@ -34,4 +34,5 @@ const joinMessage = func => {
     }
 }
 
+//Begin
 joinMessage(generateMessage(topic));
