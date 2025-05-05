@@ -3,16 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <div>
-        <nav>
-            <li>Home</li>
-            <li>Contacts</li>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://kit.fontawesome.com/d61baa07fb.js" crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+
+
+    <title>Tiago Santos Portfolio</title>
+    <header>
+        <div class="header">
+        <div>
+            <img class="logo" src="./resources/logo.png">
+        </div>
+        <nav class="navHeader">
+          <div class="hamburger-icon " onclick="toggleDropdown()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+          <div class="dropdown-menu " id="dropdownMenu">
+            <a href="#">About Me</a>
+            <a href="#">Projects</a>
+            <a href="./contact.html">Contacts</a>
+            </div>
         </nav>
     </div>
-
+    </header>
 </head>
-<body>
+<body onload="startTime()">
+    <div class="mainBody gridGap">
+        <div class="introProjects centerText ">
+            <h2>Hi, I'm Tiago Santos!</h2>
+            <h3>Software Developer | Code & No-Code Problem Solver | Outsystems Enthusiast</h3>
+            <p class="">
+                I specialize in building scalable, high-performance web applications using a hybrid approach of traditional coding (JavaScript, HTML, CSS, SQL) and low-code platforms like OutSystems. 
+            </p> 
+            <p>
+                My work bridges the gap between rapid development and robust, production-ready solutions.
+            </p>
+            <p>
+                I focus on crafting clean, responsive UIs, integrating complex business logic, and delivering solutions that are not only efficient but also drive measurable value—fast.
+            </p>
+            <p>    
+                Explore my projects to see how I combine code and no-code to solve real-world challenges with speed and precision.
+            </p>
+        </div>
+        <div class="startGridColumn3">
+            <h2>Projects</h2>
+        </div>
+    </div>
+    <div class="skillsGrid">
+        <h2 class="introProjects startAtRow1">Skills</h2>
+        <div id="skills-container" class="introProjects startAtRow2">
+            <i class="fab fa-html5"></i>
+            <i class="fab fa-css3-alt"></i>
+            <i class="fab fa-js"></i>
+            <i class="fab fa-react"></i>
+            <i class="fab fa-figma"></i>
+            <i class="fab fa-git"></i>
+            <i class="fab fa-chrome"></i>
+            <i class="fas fa-terminal"></i>
+            <i class="fas fa-universal-access"></i>
+            <i class="fab fa-npm"></i>
+            <i class="fab fa-node"></i>
+            <i class="fab fa-github"></i>
+        </div>
+    </div>
+    <div id="#time"></div>
     
+    
+    <footer>
+
+
+    </footer>
 </body>
 </html>

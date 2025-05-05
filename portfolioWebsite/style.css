@@ -1,0 +1,117 @@
+@media only screen and (max-width: 600px) {
+    .html {
+      flex-direction: column;
+    }
+  }
+  
+header {
+    /*background-color: white;*/
+    color: black;
+    max-height: 100px;
+}
+
+.header {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.logo { 
+    max-height: 10rem;
+}
+body {
+    background-image: url("./resources/background.jpeg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/*-----HAMBURGER DROPDOWN CSS-------*/
+.navHeader {
+    justify-items: end;
+    padding: 1rem;
+
+}
+.hamburger-icon {
+    cursor: pointer;
+    display: block;
+}
+  
+.line {
+    width: 30px;
+    height: 4px;
+    background-color: black;
+    margin: 5px 0;
+    border-radius: 3px;
+
+}
+  
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: lightgray;
+    width: 150px;
+    text-align: center;
+    top:4.5rem;
+    right:0.5rem;
+}
+  
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+  
+  .dropdown-menu a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/*------MAIN BODY-------*/
+.mainBody {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.introProjects {
+    grid-column-start: 2;
+}
+
+.startGridColumn3 {
+    grid-column-start: 3;
+}
+
+
+#skills-container {
+    display: flex;
+    width: 100%;
+    
+    flex-wrap: wrap;
+  }
+  
+  #skills-container > * {
+    font-size: 2em;
+    width: 2em;
+    margin-top: var(--spacing-1);
+  }
+
+/*------SKILLS-----*/
+.skillsGrid {
+    display: grid;
+    grid-template-columns: 25% 1fr 25%;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.startAtRow1 {
+    grid-row-start: 1;    
+}
+.startAtRow2 {
+    grid-row-start: 2;
+}
+
+.gridGap {
+    gap: 5%;
+}
