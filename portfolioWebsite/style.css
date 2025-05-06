@@ -1,9 +1,12 @@
 @media only screen and (max-width: 600px) {
-    .html {
+    html {
       flex-direction: column;
     }
-  }
-  
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto&family=Space+Mono:ital@0;1&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 header {
     /*background-color: white;*/
     color: black;
@@ -15,15 +18,20 @@ header {
     grid-template-columns: repeat(2, 1fr);
 }
 
+
 .logo { 
     max-height: 10rem;
 }
+
 body {
     background-image: url("./resources/background.jpeg");
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center;
     background-attachment: fixed;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 
@@ -31,7 +39,6 @@ body {
 .navHeader {
     justify-items: end;
     padding: 1rem;
-
 }
 .hamburger-icon {
     cursor: pointer;
@@ -44,7 +51,6 @@ body {
     background-color: black;
     margin: 5px 0;
     border-radius: 3px;
-
 }
   
 .dropdown-menu {
@@ -65,7 +71,7 @@ body {
     font-weight: 500;
 }
   
-  .dropdown-menu a:hover {
+.dropdown-menu a:hover {
     background-color: #ddd;
     color: black;
 }
@@ -73,7 +79,7 @@ body {
 /*------MAIN BODY-------*/
 .mainBody {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 20% 60% 20%;
 }
 
 .introProjects {
@@ -84,25 +90,36 @@ body {
     grid-column-start: 3;
 }
 
+#projectsLink {
+    text-decoration: none;
+    color: none;
+}
 
+#projectsLink :hover {
+    font-size: 1.5rem;
+}
+
+.paddingTopMain {
+    padding-top: 4rem;
+}
+
+/*------SKILLS-----*/
 #skills-container {
     display: flex;
     width: 100%;
-    
     flex-wrap: wrap;
-  }
-  
-  #skills-container > * {
+}
+
+
+#skills-container > * {
     font-size: 2em;
     width: 2em;
-    margin-top: var(--spacing-1);
-  }
+    margin-top: var(--spacing-l);
+}
 
-/*------SKILLS-----*/
 .skillsGrid {
     display: grid;
     grid-template-columns: 25% 1fr 25%;
-    grid-template-rows: repeat(2, 1fr);
 }
 
 .startAtRow1 {
@@ -114,4 +131,27 @@ body {
 
 .gridGap {
     gap: 5%;
+}
+
+.removeIconLink {
+    text-decoration: none;
+    color: unset;
+}
+
+.removeIconLink :hover {
+    font-size: 1.2em;
+}
+
+/*------CONTACTS-----*/
+.contactItems {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+.alignItem {
+    align-content: center;
+}
+
+.flex {
+    display: flex;
 }
