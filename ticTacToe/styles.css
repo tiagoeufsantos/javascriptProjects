@@ -1,0 +1,42 @@
+.outerSquare {
+    width: 600px;
+    height: 600px;
+    border-radius: 4%;
+}
+
+.borderStyle {
+    border: 1px solid;
+    border-color: black;
+}
+
+.baseGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: black;
+}
+
+.innerSquareColor {
+    background-color: beige;
+    cursor: pointer;
+}
+
+.innerSquare1 {
+    border-radius: 4% 0% 0% 0%;
+}
+
+.innerSquare3 {
+    border-radius: 0% 4% 0% 0%;
+}
+
+.innerSquare7 {
+    border-radius: 0% 0% 0% 4%;
+}
+
+.innerSquare9 {
+    border-radius: 0% 0% 4% 0%;
+}
+
+img {
+    max-width: 200px;
+}
