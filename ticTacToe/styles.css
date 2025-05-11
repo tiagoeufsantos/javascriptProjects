@@ -1,8 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto&family=Space+Mono:ital@0;1&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    justify-self: center;
+    background-color: beige;
+}
+
+#alignTextCenter {
+    text-align: center;
+}
+
+#alignText {
+    text-align: justify;
+}
+
+#turnText {
+    text-align: center;
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1%;
+    padding-top: 2rem;
+}
+
 .outerSquare {
     width: 600px;
     height: 600px;
     border-radius: 4%;
 }
+
 
 .borderStyle {
     border: 1px solid;
@@ -17,7 +51,7 @@
 }
 
 .innerSquareColor {
-    background-color: beige;
+    background-color: white;
     cursor: pointer;
 }
 
@@ -38,5 +72,41 @@
 }
 
 img {
-    max-width: 200px;
+    width: 200px
+}
+
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .outerSquare {
+    display: grid;
+    width: 90vw;
+    height: 90vw;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .square img,
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  #turnText,
+  #alignText,
+  #alignTextCenter {
+    padding: 0 1rem;
+  }
 }

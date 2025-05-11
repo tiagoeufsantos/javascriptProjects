@@ -5,30 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
-
 </head>
 <body>
+    <h1 id="alignTextCenter">Tic Tac Toe</h1>
+    <div class="mainGrid">
+        <div id="alignText">
+            <h2>Rules:</h2>
+            <h3>Players</h3>
+            <ul>
+                <li>2 players</li>
+                <li>One is X, the other is O</li>
+            </ul>
+            <h3>Turns</h3>
+            <ul>
+                <li>Players take turns placing their mark in an empty square</li>
+                <li>X usually goes first</li>
+            </ul>
+            <h3>Winning Conditions</h3>
+            <p>A player wins if they place three of their marks in:</p>
+            <ul>
+                <li>A <strong>horizontal row</strong> <i>(e.g.,top row: X X X)</i></li>
+                <li>A <strong>vertical column</strong> <i>(e.g., middle column: O O O)</i></li>
+                <li>A <strong>diagonal</strong> <i>(e.g., top-left to bottom right: X X X)</i></li>
+            </ul>
+            <h3>Draw (Tie)</h3>
+            <ul>
+                <li>If all 9 squares are filled without a winner, the game is a <strong>draw</strong></li>
+            </ul>
+            <div id="playerTurn">    
+            </div>
+        </div>
     <div>
-        <h1>Welcome!</h1>
-        <div id="playerTurn">
-            
+        <h2 id="turnText"></h2>
+        <div class="outerSquare baseGrid">
+            <div class="square innerSquare1 innerSquareColor borderStyle"><img src=""></div>
+            <div class="square innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquare3 innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquare7 innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquareColor borderStyle"><img src="" /></div>
+            <div class="square innerSquare9 innerSquareColor borderStyle"><img src="" /></div>
         </div>
     </div>
-    <div class="outerSquare baseGrid">
-        <div id="square1" class="innerSquare1 innerSquareColor borderStyle"><img id="xo" src=""></div>
-        <div id="square2" class="innerSquareColor borderStyle"></div>
-        <div id="square3" class="innerSquare3 innerSquareColor borderStyle"></div>
-        <div id="square4" class="innerSquareColor borderStyle"></div>
-        <div id="square5" class="innerSquareColor borderStyle"></div>
-        <div id="square6" class="innerSquareColor borderStyle"></div>
-        <div id="square7" class="innerSquare7 innerSquareColor borderStyle"></div>
-        <div id="square8" class="innerSquareColor borderStyle"></div>
-        <div id="square9" class="innerSquare9 innerSquareColor borderStyle"></div>
-    </div>
     <div>
-        <h4>Player 1:</h4>
-        <h4>Player 2:</h4>
+        <h3 id="xPlayerWins"></h3>
+        <h3 id="oPlayerWins"></h3>
+        <ul id="moves"></ul>
     </div>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
