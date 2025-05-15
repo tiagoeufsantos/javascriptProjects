@@ -75,6 +75,16 @@ img {
     width: 200px
 }
 
+button {
+   background-color: burlywood;
+   color: white; 
+   height: 2rem;
+   width: fit-content;
+   border-radius: 5px;
+   border-color: burlywood;
+   margin-top: 2rem;
+}
+
 
 @media (max-width: 600px) {
   body {

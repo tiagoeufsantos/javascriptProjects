@@ -1,10 +1,21 @@
+const squares = document.querySelectorAll(".square");
+const nextRoundBtn = document.getElementById("nextRound");
+const restartGameBtn = document.getElementById("restartGame");
+const playerTurnText = document.getElementById("turnText");
+const xPlayerVictory = document.getElementById("xPlayerWins");
+const oPlayerVictory = document.getElementById("oPlayerWins");
+const ul = document.getElementById("moves");
+
 let currentPlayer = "X";
 let xMoves = [];
 let oMoves = [];
-let indexArr = [];
 let xPlayerWins = 0;
 let oPlayerWins = 0;
-let weHaveAWinner = false;
+nextRoundBtn.style.display = "none";
+restartGameBtn.style.display = "none";
+xPlayerVictory.innerHTML = `Player X: 0`;
+oPlayerVictory.innerHTML = `Player O: 0`;
+playerTurnText.innerHTML = "Player turn: " + currentPlayer;
 
 const possibleWaysToWin = [
   [0, 1, 2],
@@ -17,20 +28,12 @@ const possibleWaysToWin = [
   [2, 4, 6],
 ];
 
-const squares = document.querySelectorAll(".square");
-
-document.getElementById("turnText").innerHTML = "Player turn: " + currentPlayer;
-document.getElementById("xPlayerWins").innerHTML = `Player X: 0`;
-document.getElementById("oPlayerWins").innerHTML = `Player O: 0`;
-document.getElementById("nextRound").style.visibility = "hidden";
-
-/*----FUNCTION THAT HANDLES THE CLICKING A SQUARE----*/
+/*----FUNCTION THAT HANDLES WHAT CLICKING A SQUARE DOES----*/
 const handleClick = (e) => {
   const square = e.currentTarget;
-
   let index = Array.from(squares).indexOf(square);
-
   const img = square.querySelector("img");
+
   if (!img.getAttribute("src")) {
     img.setAttribute(
       "src",
@@ -38,19 +41,19 @@ const handleClick = (e) => {
     );
 
     currentPlayer === "X" ? xMoves.push(index) : oMoves.push(index);
-    indexArr.push[index];
-    document.getElementById("moves").innerHTML +=
+    ul.innerHTML +=
       "<li> " +
       `Player ${currentPlayer} plays in square ${index + 1}` +
       " </li>";
 
-    if (evaluate() === false) {
+    const gameStatus = evaluate();
+
+    if (!gameStatus) {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      let playerTurn = (document.getElementById("turnText").innerHTML =
-        "Player turn: " + currentPlayer);
+      playerTurn = playerTurnText.innerHTML = "Player turn: " + currentPlayer;
     }
   }
-  evaluate();
+  //evaluate();
 };
 
 /*---- EVALUTES IF OBJECTIVE TO WIN HAS BEEN FULLFILLED ---------*/
@@ -63,12 +66,9 @@ const evaluate = () => {
       if (hasXWin) {
         xPlayerWins++;
         result = true;
-        document.getElementById(
-          "xPlayerWins"
-        ).innerHTML = `Player X: ${xPlayerWins}`;
-        document.getElementById("moves").innerHTML +=
+        xPlayerVictory.innerHTML = `Player X: ${xPlayerWins}`;
+        ul.innerHTML +=
           "<li> " + "<strong>" + `Player X wins!!!` + "<strong>" + "</li>";
-        weHaveAWinner = true;
         stopGame();
         break;
       }
@@ -82,27 +82,36 @@ const evaluate = () => {
       if (hasOWin) {
         oPlayerWins++;
         result = true;
-        document.getElementById(
-          "oPlayerWins"
-        ).innerHTML = `Player O: ${oPlayerWins}`;
-        document.getElementById("moves").innerHTML +=
+        oPlayerVictory.innerHTML = `Player O: ${oPlayerWins}`;
+        ul.innerHTML +=
           "<li> " + "<strong>" + `Player O wins!!!` + "<strong>" + "</li>";
-        weHaveAWinner = true;
         stopGame();
         break;
       }
     }
+    if (oMoves.length + xMoves.length === squares.length) {
+      gameDraw();
+    }
   }
-  return weHaveAWinner;
+  return result;
 };
 
 /*----FUNCTION TO RESET VALUES AFTER GAME FINISHED----*/
 const resetAllValues = () => {
-  weHaveAWinner = false;
   xMoves = [];
   oMoves = [];
-  indexArr = [];
+  xPlayerWins = 0;
+  oPlayerWins = 0;
+  xPlayerVictory.innerHTML = `Player X: 0`;
+  oPlayerVictory.innerHTML = `Player O: 0`;
+  currentPlayer = "X";
+  resetSquares();
+};
 
+/*----FUNCTION TO RESET ALL VALUES AFTER GAME FINISHED----*/
+const resetValues = () => {
+  xMoves = [];
+  oMoves = [];
   resetSquares();
 };
 
@@ -112,20 +121,40 @@ const resetSquares = () => {
     const img = squares[i].querySelector("img");
     img.src = "";
   }
-  const ul = document.getElementById("moves");
   ul.innerHTML = "";
 };
 
+const showButtons = () => {
+  restartGameBtn.style.display = "inline";
+  nextRoundBtn.style.display = "inline";
+};
+
+const hideButtons = () => {
+  restartGameBtn.style.display = "none";
+  nextRoundBtn.style.display = "none";
+};
+
 /*---FUNCTION TO PLAY NEXT ROUND---*/
-const nextRound = () => {
+const beginNextRound = () => {
+  stopGame();
+  resetValues();
+  playingGame();
+  hideButtons();
+};
+
+const restartGame = () => {
   stopGame();
   resetAllValues();
   playingGame();
-  document.getElementById("nextRound").style.visibility = "hidden";
+  hideButtons();
 };
 
-//WORK ON DRAW
-//
+/*-----FUNCTION TO PLAY IF IT'S A DRAW----*/
+const gameDraw = () => {
+  document.getElementById("moves").innerHTML +=
+    "<li> " + "<strong>" + `It's a DRAW!!!` + "<strong>" + "</li>";
+  stopGame();
+};
 
 /*----FUNCTION TO ADD EVENT LISTENER----*/
 const playingGame = () => {
@@ -139,7 +168,10 @@ const stopGame = () => {
   squares.forEach((square) => {
     square.removeEventListener("click", handleClick);
   });
-  document.getElementById("nextRound").style.visibility = "visible";
+  showButtons();
+  nextRoundBtn.addEventListener("click", beginNextRound);
+  restartGameBtn.addEventListener("click", restartGame);
 };
 
+/*---GAME BEGIN---*/
 playingGame();
