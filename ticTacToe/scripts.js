@@ -4,6 +4,7 @@ let oMoves = [];
 let indexArr = [];
 let xPlayerWins = 0;
 let oPlayerWins = 0;
+let weHaveAWinner = false;
 
 const possibleWaysToWin = [
   [0, 1, 2],
@@ -21,39 +22,36 @@ const squares = document.querySelectorAll(".square");
 document.getElementById("turnText").innerHTML = "Player turn: " + currentPlayer;
 document.getElementById("xPlayerWins").innerHTML = `Player X: 0`;
 document.getElementById("oPlayerWins").innerHTML = `Player O: 0`;
+document.getElementById("nextRound").style.visibility = "hidden";
 
-/*----EVENT THAT TRIGGERS ON CLICKING A SQUARE----*/
-squares.forEach((square) => {
-  square.addEventListener("click", () => {
-    let index = Array.from(squares).indexOf(square);
+/*----FUNCTION THAT HANDLES THE CLICKING A SQUARE----*/
+const handleClick = (e) => {
+  const square = e.currentTarget;
 
-    const img = square.querySelector("img");
-    if (!img.getAttribute("src")) {
-      img.setAttribute(
-        "src",
-        currentPlayer === "X"
-          ? "./resources/cross.png"
-          : "./resources/circle.png"
-      );
+  let index = Array.from(squares).indexOf(square);
 
-      currentPlayer === "X" ? xMoves.push(index) : oMoves.push(index);
-      indexArr.push[index];
-      document.getElementById("moves").innerHTML +=
-        "<li> " +
-        `Player ${currentPlayer} plays in square ${index + 1}` +
-        " </li>";
+  const img = square.querySelector("img");
+  if (!img.getAttribute("src")) {
+    img.setAttribute(
+      "src",
+      currentPlayer === "X" ? "./resources/cross.png" : "./resources/circle.png"
+    );
 
-      if (evaluate() === false) {
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
-        let playerTurn = (document.getElementById("turnText").innerHTML =
-          "Player turn: " + currentPlayer);
-      } else {
-        resetAllValues();
-      }
+    currentPlayer === "X" ? xMoves.push(index) : oMoves.push(index);
+    indexArr.push[index];
+    document.getElementById("moves").innerHTML +=
+      "<li> " +
+      `Player ${currentPlayer} plays in square ${index + 1}` +
+      " </li>";
+
+    if (evaluate() === false) {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      let playerTurn = (document.getElementById("turnText").innerHTML =
+        "Player turn: " + currentPlayer);
     }
-    evaluate();
-  });
-});
+  }
+  evaluate();
+};
 
 /*---- EVALUTES IF OBJECTIVE TO WIN HAS BEEN FULLFILLED ---------*/
 const evaluate = () => {
@@ -61,13 +59,17 @@ const evaluate = () => {
   if (!result && xMoves.length >= 3) {
     for (let i of possibleWaysToWin) {
       const hasXWin = i.every((arrayElement) => xMoves.includes(arrayElement));
-      console.log(hasXWin);
+
       if (hasXWin) {
         xPlayerWins++;
         result = true;
         document.getElementById(
           "xPlayerWins"
         ).innerHTML = `Player X: ${xPlayerWins}`;
+        document.getElementById("moves").innerHTML +=
+          "<li> " + "<strong>" + `Player X wins!!!` + "<strong>" + "</li>";
+        weHaveAWinner = true;
+        stopGame();
         break;
       }
     }
@@ -76,42 +78,68 @@ const evaluate = () => {
   if (!result && oMoves.length >= 3) {
     for (let i of possibleWaysToWin) {
       const hasOWin = i.every((arrayElement) => oMoves.includes(arrayElement));
-      console.log(hasOWin);
+
       if (hasOWin) {
         oPlayerWins++;
         result = true;
         document.getElementById(
           "oPlayerWins"
         ).innerHTML = `Player O: ${oPlayerWins}`;
+        document.getElementById("moves").innerHTML +=
+          "<li> " + "<strong>" + `Player O wins!!!` + "<strong>" + "</li>";
+        weHaveAWinner = true;
+        stopGame();
         break;
       }
     }
   }
-  return result;
+  return weHaveAWinner;
 };
 
 /*----FUNCTION TO RESET VALUES AFTER GAME FINISHED----*/
 const resetAllValues = () => {
+  weHaveAWinner = false;
   xMoves = [];
   oMoves = [];
   indexArr = [];
 
-  finishedGame();
-  //resetSquares();
+  resetSquares();
 };
 
 /*----FUNCTION TO CLEAR IMAGES----*/
 const resetSquares = () => {
   for (let i = 0; i < squares.length; i++) {
     const img = squares[i].querySelector("img");
-    img.removeAttribute("src");
+    img.src = "";
   }
   const ul = document.getElementById("moves");
-  ul.querySelectorAll("li").forEach((li) => li.remove());
+  ul.innerHTML = "";
 };
 
-/*---FUNCTION ON GAME FINISH---*/
-const finishedGame = () => {};
+/*---FUNCTION TO PLAY NEXT ROUND---*/
+const nextRound = () => {
+  stopGame();
+  resetAllValues();
+  playingGame();
+  document.getElementById("nextRound").style.visibility = "hidden";
+};
 
 //WORK ON DRAW
 //
+
+/*----FUNCTION TO ADD EVENT LISTENER----*/
+const playingGame = () => {
+  squares.forEach((square) => {
+    square.addEventListener("click", handleClick);
+  });
+};
+
+/*----FUNCTION TO REMOVE EVENT LISTENER----*/
+const stopGame = () => {
+  squares.forEach((square) => {
+    square.removeEventListener("click", handleClick);
+  });
+  document.getElementById("nextRound").style.visibility = "visible";
+};
+
+playingGame();
