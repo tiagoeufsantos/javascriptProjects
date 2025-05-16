@@ -6,7 +6,7 @@ const xPlayerVictory = document.getElementById("xPlayerWins");
 const oPlayerVictory = document.getElementById("oPlayerWins");
 const ul = document.getElementById("moves");
 
-let currentPlayer = "X";
+let currentPlayer = Math.floor(Math.random() * 2) === 1 ? "X" : "O";
 let xMoves = [];
 let oMoves = [];
 let xPlayerWins = 0;
@@ -104,7 +104,7 @@ const resetAllValues = () => {
   oPlayerWins = 0;
   xPlayerVictory.innerHTML = `Player X: 0`;
   oPlayerVictory.innerHTML = `Player O: 0`;
-  currentPlayer = "X";
+  currentPlayer = Math.floor(Math.random() * 2) === 1 ? "X" : "O";
   resetSquares();
 };
 
