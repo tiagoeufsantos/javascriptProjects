@@ -56,7 +56,7 @@ const handleClick = (e) => {
   //evaluate();
 };
 
-/*---- EVALUTES IF OBJECTIVE TO WIN HAS BEEN FULLFILLED ---------*/
+/*----EVALUTES IF OBJECTIVE TO WIN HAS BEEN FULLFILLED---------*/
 const evaluate = () => {
   let result = false;
   if (!result && xMoves.length >= 3) {
@@ -124,17 +124,19 @@ const resetSquares = () => {
   ul.innerHTML = "";
 };
 
+/*----FUNCTION TO SHOW BUTTONS----*/
 const showButtons = () => {
   restartGameBtn.style.display = "inline";
   nextRoundBtn.style.display = "inline";
 };
 
+/*----FUNCTION TO HIDE BUTTONS----*/
 const hideButtons = () => {
   restartGameBtn.style.display = "none";
   nextRoundBtn.style.display = "none";
 };
 
-/*---FUNCTION TO PLAY NEXT ROUND---*/
+/*----FUNCTION TO PLAY NEXT ROUND----*/
 const beginNextRound = () => {
   stopGame();
   resetValues();
@@ -142,6 +144,7 @@ const beginNextRound = () => {
   hideButtons();
 };
 
+/*----FUNCTION TO RESTART GAME----*/
 const restartGame = () => {
   stopGame();
   resetAllValues();
@@ -173,5 +176,5 @@ const stopGame = () => {
   restartGameBtn.addEventListener("click", restartGame);
 };
 
-/*---GAME BEGIN---*/
+/*----GAME BEGIN----*/
 playingGame();
